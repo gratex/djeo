@@ -146,6 +146,12 @@ var fc = declare([Feature], {
 		for(var i=features.length-1; i>=0; i--) {
 			features[i].remove();
 		}
+		var map = this.map, idx;
+		array.forEach(this.styleClass,function(className){
+			if(~(idx=array.indexOf(map.featuresByClass[className], this))){
+				map.featuresByClass[className].splice(idx,1);
+			}
+		},this);
 		delete this.map.features[this.id];
 	},
 	
