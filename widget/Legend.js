@@ -3,6 +3,7 @@ define([
 	"dojo/_base/lang", // isString, isArray, getObject
 	"dojo/_base/array", // forEach
 	"dojo/dom-construct", // create, destroy
+	"dojo/number", // create, destroy
 	"dijit/_Widget",
 	"dijit/_TemplatedMixin",
 	"../dojox/gfx",
@@ -11,7 +12,7 @@ define([
 	"../common/Placemark",
 	"../gfx", //_getIconLegend
 	"../Style"
-], function(declare, lang, array, domConstruct, _Widget, _TemplatedMixin, gfx, matrix, djeo, P, dx) {
+], function(declare, lang, array, domConstruct, number, _Widget, _TemplatedMixin, gfx, matrix, djeo, P, dx) {
 
 var Legend = declare([_Widget, _TemplatedMixin], {
 	// summary: A legend for a map.
@@ -145,7 +146,7 @@ Legend._getBreaksIconLegend = function(domContainer, style, features, name) {
 				}
 				
 				domConstruct.create("td", {
-					innerHTML: breaks[i]+"..."+breaks[i+1]
+					innerHTML: number.format(breaks[i]) + " - " + number.format(breaks[i+1])
 				}, tr);
 			}
 		}
@@ -181,7 +182,7 @@ Legend._getBreaksAreaLegend = function(domContainer, style, features, name) {
 				}, tr),
 				
 				domConstruct.create("td", {
-					innerHTML: breaks[i]+"..."+breaks[i+1]
+					innerHTML: number.format(breaks[i]) + " - " + number.format(breaks[i+1])
 				}, tr);
 			}
 		}
