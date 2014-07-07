@@ -146,6 +146,7 @@ var fc = declare([Feature], {
 		for(var i=features.length-1; i>=0; i--) {
 			features[i].remove();
 		}
+		delete this.map.features[this.id];
 	},
 	
 	getBbox: function() {
