@@ -169,7 +169,8 @@ Legend._getBreaksAreaLegend = function(domContainer, style, features, name) {
 			if (name) domConstruct.create("div", {innerHTML: name+":"}, domContainer);
 			var table = domConstruct.create("table", null, domContainer),
 				tbody = domConstruct.create("tbody", null, table);
-				
+			
+			var formatter = feature.formatter || number.format;
 			for (var i=numClasses-1; i>=0; i--) {
 				var tr = domConstruct.create("tr", null, tbody),
 					breakStyle = {};
@@ -182,7 +183,7 @@ Legend._getBreaksAreaLegend = function(domContainer, style, features, name) {
 				}, tr),
 				
 				domConstruct.create("td", {
-					innerHTML: number.format(breaks[i]) + " - " + number.format(breaks[i+1])
+					innerHTML: formatter(breaks[i]) + " - " + formatter(breaks[i+1])
 				}, tr);
 			}
 		}
