@@ -26,7 +26,7 @@ u.radToDeg = function(radian){
 };
 
 u.isRelativeUrl = function(url) {
-	return url.substr(0,4)=="http" ? false : true;
+	return /http|data/.test(url.substr(0,4)) ? false : true;
 };
 
 return u;
